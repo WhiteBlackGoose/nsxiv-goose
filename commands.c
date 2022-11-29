@@ -23,6 +23,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
@@ -220,6 +221,20 @@ bool cg_navigate_marked(arg_t n)
 		}
 	}
 	return navigate_to(new);
+}
+
+bool cg_invert_colors()
+{
+	imlib_context_set_image(img.im);
+    uint32_t *data = imlib_image_get_data();
+    for (uint32_t i = 0; i < img.w * img.h; i++)
+    {
+        uint32_t col = data[i];
+        uint32_t newcol = (0xFFFFFF - (col & 0x00FFFFFF)) | 0xFF000000;
+        data[i] = newcol;
+    }
+    imlib_image_put_back_data(data);
+    return true;
 }
 
 bool cg_change_gamma(arg_t d)

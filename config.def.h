@@ -7,7 +7,7 @@ static const int WIN_HEIGHT = 600;
 /* colors and font can be overwritten via X resource properties.
  * See nsxiv(1), X(7) section Resources and xrdb(1) for more information.
  */
-static const char *DEFAULT_WIN_BG     = "white";
+static const char *DEFAULT_WIN_BG     = "black";
 static const char *DEFAULT_WIN_FG     = "black";
 static const char *DEFAULT_MARK_COLOR = NULL;  /* NULL means it will default to window foreground */
 #if HAVE_LIBFONTS
@@ -26,8 +26,18 @@ static const bool TOP_STATUSBAR = false;
  * (first/last value is used as min/max zoom level)
  */
 static const float zoom_levels[] = {
-	 12.5,  25.0,  50.0,  75.0,
-	100.0, 150.0, 200.0, 400.0, 800.0
+    2.5, 5.0, 7.5, 10.0, 12.5, 15.0, 17.5, 
+    20.0, 22.5, 25.0, 27.5, 30.0, 32.5,
+    35.0, 37.5, 40.0, 42.5, 45.0, 47.5, 
+    50.0, 52.5, 55.0, 57.5, 60.0, 62.5, 
+    65.0, 67.5, 70.0, 72.5, 75.0, 77.5, 
+    80.0, 82.5, 85.0, 87.5, 90.0, 92.5, 95.0, 97.5,
+	100.0, 110.0, 120.0, 130.0, 140.0, 150.0, 160.0,
+    170.0, 180.0, 190.0, 200.0, 220.0,
+    240.0, 260.0, 280.0, 300.0,
+    330.0, 360.0, 390.0, 430.0,
+    470.0, 520.0, 600.0, 700.0,
+    800.0
 };
 
 /* default slideshow delay (in sec, overwritten via -S option): */
@@ -118,6 +128,7 @@ static const keymap_t keys[] = {
 	{ 0,            XK_braceleft,     g_change_gamma,       -1 },
 	{ 0,            XK_braceright,    g_change_gamma,       +1 },
 	{ ControlMask,  XK_g,             g_change_gamma,        0 },
+	{ 0,            XK_i,             g_invert_colors,      None },
 
 	{ 0,            XK_h,             t_move_sel,           DIR_LEFT },
 	{ 0,            XK_Left,          t_move_sel,           DIR_LEFT },
