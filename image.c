@@ -28,6 +28,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+#include "global.h"
 
 #if HAVE_LIBEXIF
 #include <libexif/exif-data.h>
@@ -75,6 +76,7 @@ void img_init(img_t *img, win_t *win)
 
 	img->im = NULL;
 	img->win = win;
+    img->inverted = false;
 	img->scalemode = options->scalemode;
 	img->zoom = options->zoom;
 	img->zoom = MAX(img->zoom, ZOOM_MIN);
@@ -425,6 +427,7 @@ Imlib_Image img_open(const fileinfo_t *file)
 bool img_load(img_t *img, const fileinfo_t *file)
 {
 	const char *fmt;
+    img->inverted = false;
 
 	if ((img->im = img_open(file)) == NULL)
 		return false;
@@ -596,6 +599,19 @@ void img_render(img_t *img)
 	imlib_context_set_image(img->im);
 	imlib_context_set_anti_alias(img->anti_alias);
 	imlib_context_set_drawable(win->buf.pm);
+
+    if (img->inverted != view_inverted)
+    {
+        img->inverted = view_inverted;
+        uint32_t *data = imlib_image_get_data();
+        for (uint32_t i = 0; i < img->w * img->h; i++)
+        {
+            uint32_t col = data[i];
+            uint32_t newcol = (0xFFFFFF - (col & 0x00FFFFFF)) | 0xFF000000;
+            data[i] = newcol;
+        }
+        imlib_image_put_back_data(data);
+    }
 
 	/* manual blending, for performance reasons.
 	 * see https://phab.enlightenment.org/T8969#156167 for more details.

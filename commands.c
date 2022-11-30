@@ -27,10 +27,13 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
+#include "global.h"
 
 extern img_t img;
 extern tns_t tns;
 extern win_t win;
+
+bool view_inverted = false;
 
 static bool navigate_to(arg_t n)
 {
@@ -225,16 +228,18 @@ bool cg_navigate_marked(arg_t n)
 
 bool cg_invert_colors(arg_t _)
 {
-    imlib_context_set_image(img.im);
-    uint32_t *data = imlib_image_get_data();
-    for (uint32_t i = 0; i < img.w * img.h; i++)
-    {
-        uint32_t col = data[i];
-        uint32_t newcol = (0xFFFFFF - (col & 0x00FFFFFF)) | 0xFF000000;
-        data[i] = newcol;
-    }
-    imlib_image_put_back_data(data);
-    img.dirty = true;
+    view_inverted = !view_inverted;
+    // img.inverted = true;
+    // imlib_context_set_image(img.im);
+    // uint32_t *data = imlib_image_get_data();
+    // for (uint32_t i = 0; i < img.w * img.h; i++)
+    // {
+    //     uint32_t col = data[i];
+    //     uint32_t newcol = (0xFFFFFF - (col & 0x00FFFFFF)) | 0xFF000000;
+    //     data[i] = newcol;
+    // }
+    // imlib_image_put_back_data(data);
+    // img.dirty = true;
     return true;
 }
 
