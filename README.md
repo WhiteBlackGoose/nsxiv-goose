@@ -5,7 +5,7 @@
 [![license](https://img.shields.io/badge/license-GPL--2.0-lightgreen?style=flat-square)](https://codeberg.org/nsxiv/nsxiv/src/branch/master/LICENSE)
 [![loc](https://img.shields.io/tokei/lines/github/nsxiv/nsxiv?color=red&style=flat-square)](https://codeberg.org/nsxiv/nsxiv)
 
-**Neo (or New or Not) Simple (or Small or Suckless) X Image Viewer**
+**Neo (or New or Not) Simple (or Small or Suckless) X Image Viewer (goose version)**
 --------------------------------------------------------------------
 
 nsxiv is a fork of the now-unmaintained [sxiv](https://github.com/muennich/sxiv)
@@ -47,21 +47,10 @@ Screenshots
 ![Thumb](https://codeberg.org/nsxiv/pages/raw/branch/master/img/thumb.png "Thumb mode")
 
 
-Installing via package manager
-------------------------------
+Installing
+----------
 
-<a href="https://repology.org/project/nsxiv/versions">
-  <img align="right" width="192" src="https://repology.org/badge/vertical-allrepos/nsxiv.svg">
-</a>
-
-nsxiv is available on the following distributions/repositories. If you don't see
-your distro listed here, either contact your distro's package maintainer or
-consider packaging it yourself and adding it to the respective community repo.
-
-Repos not tracked by repology:
-
-* Fedora: Enable the copr repo via `dnf copr enable mamg22/nsxiv`.
-
+Get it from the latest [releases](https://github.com/WhiteBlackGoose/nsxiv-goose/releases) page.
 
 Dependencies
 ------------

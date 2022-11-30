@@ -6,7 +6,7 @@ on:
 
 # NOTE: "stable" tcc is too old and fails at linking. instead fetching a recent known working commit.
 jobs:
-  build:
+  ubuntu-build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
