@@ -4,6 +4,7 @@
 
 /* global */
 bool cg_change_gamma(arg_t);
+bool cg_invert_colors(arg_t);
 bool cg_first(arg_t);
 bool cg_mark_range(arg_t);
 bool cg_n_or_last(arg_t);

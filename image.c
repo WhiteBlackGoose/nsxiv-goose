@@ -597,16 +597,6 @@ void img_render(img_t *img)
 	imlib_context_set_anti_alias(img->anti_alias);
 	imlib_context_set_drawable(win->buf.pm);
 
-    {
-        uint32_t *data = imlib_image_get_data();
-        for (uint32_t i = 0; i < img->w * img->h; i++)
-        {
-            uint32_t col = data[i];
-            uint32_t newcol = (0xFFFFFF - (col & 0x00FFFFFF)) | 0xFF000000;
-            data[i] = newcol;
-        }
-        imlib_image_put_back_data(data);
-    }
 	/* manual blending, for performance reasons.
 	 * see https://phab.enlightenment.org/T8969#156167 for more details.
 	 */

@@ -223,9 +223,9 @@ bool cg_navigate_marked(arg_t n)
 	return navigate_to(new);
 }
 
-bool cg_invert_colors()
+bool cg_invert_colors(arg_t _)
 {
-	imlib_context_set_image(img.im);
+    imlib_context_set_image(img.im);
     uint32_t *data = imlib_image_get_data();
     for (uint32_t i = 0; i < img.w * img.h; i++)
     {
@@ -234,6 +234,7 @@ bool cg_invert_colors()
         data[i] = newcol;
     }
     imlib_image_put_back_data(data);
+    img.dirty = true;
     return true;
 }
 
