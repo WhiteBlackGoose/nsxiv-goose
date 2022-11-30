@@ -24,7 +24,7 @@ are welcome, see [CONTRIBUTING] to get started.
 Features
 --------
 
-* Basic image operations like zooming, panning, rotating
+* Basic image operations like zooming, panning, rotating, color inversion
 * Basic support for animated/multi-frame images
 * Thumbnail mode: grid of selectable previews of all images
 * Ability to cache thumbnails for fast re-loading
