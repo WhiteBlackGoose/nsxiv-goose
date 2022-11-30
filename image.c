@@ -604,7 +604,7 @@ void img_render(img_t *img)
     {
         img->inverted = view_inverted;
         uint32_t *data = imlib_image_get_data();
-        for (uint32_t i = 0; i < img->w * img->h; i++)
+        for (uint32_t i = 0; i < (uint32_t)(img->w * img->h); i++)
         {
             uint32_t col = data[i];
             uint32_t newcol = (0xFFFFFF - (col & 0x00FFFFFF)) | 0xFF000000;
