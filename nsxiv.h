@@ -189,7 +189,12 @@ struct img {
 	bool dirty;
 	bool anti_alias;
 	bool alpha;
-    bool inverted;
+
+    // when those two don't coincide, we shall invert the image
+    // should_be_inverted is set by the user
+    // is_inverted shows whether it's *actually* inverted
+    bool should_be_inverted;
+    bool is_inverted;
 
 	struct {
 		bool on;

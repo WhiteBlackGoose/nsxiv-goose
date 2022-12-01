@@ -28,7 +28,6 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include "global.h"
 
 #if HAVE_LIBEXIF
 #include <libexif/exif-data.h>
@@ -76,7 +75,7 @@ void img_init(img_t *img, win_t *win)
 
 	img->im = NULL;
 	img->win = win;
-    img->inverted = false;
+    img->is_inverted = false;
 	img->scalemode = options->scalemode;
 	img->zoom = options->zoom;
 	img->zoom = MAX(img->zoom, ZOOM_MIN);
@@ -427,7 +426,7 @@ Imlib_Image img_open(const fileinfo_t *file)
 bool img_load(img_t *img, const fileinfo_t *file)
 {
 	const char *fmt;
-    img->inverted = false;
+    img->is_inverted = false;
 
 	if ((img->im = img_open(file)) == NULL)
 		return false;
@@ -600,9 +599,9 @@ void img_render(img_t *img)
 	imlib_context_set_anti_alias(img->anti_alias);
 	imlib_context_set_drawable(win->buf.pm);
 
-    if (img->inverted != view_inverted)
+    if (img->is_inverted != img->should_be_inverted)
     {
-        img->inverted = view_inverted;
+        img->is_inverted = img->should_be_inverted;
         uint32_t *data = imlib_image_get_data();
         for (uint32_t i = 0; i < (uint32_t)(img->w * img->h); i++)
         {

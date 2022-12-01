@@ -27,13 +27,10 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include "global.h"
 
 extern img_t img;
 extern tns_t tns;
 extern win_t win;
-
-bool view_inverted = false;
 
 static bool navigate_to(arg_t n)
 {
@@ -228,7 +225,7 @@ bool cg_navigate_marked(arg_t n)
 
 bool cg_invert_colors(arg_t _)
 {
-    view_inverted = !view_inverted;
+    img.should_be_inverted = !img.should_be_inverted;
     img.dirty = true;
     return true;
 }
